@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Box,
@@ -53,7 +53,6 @@ function Stake() {
   const [view, setView] = useState(0);
   const [quantity, setQuantity] = useState(0);
 
-  const tokens = useAppSelector(state => state.zap.balances);
   const isAppLoading = useAppSelector(state => state.app.loading);
   const currentIndex = useAppSelector(state => {
     return state.app.currentIndex;
