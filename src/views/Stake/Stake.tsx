@@ -217,7 +217,7 @@ function Stake() {
                       className="stake-apy"
                       label={t`APY`}
                       metric={`${formattedTrimmedStakingAPY}%`}
-                      isLoading={stakingAPY}
+                      isLoading={stakingAPY ? true : false}
                     />
                   </Grid>
 
@@ -226,7 +226,7 @@ function Stake() {
                       className="stake-tvl"
                       label={t`Total Value Deposited`}
                       metric={formattedStakingTVL}
-                      isLoading={stakingTVL}
+                      isLoading={stakingTVL ? true : false}
                     />
                   </Grid>
 
@@ -235,7 +235,7 @@ function Stake() {
                       className="stake-index"
                       label={t`Current Index`}
                       metric={`${formattedCurrentIndex} OHM`}
-                      isLoading={currentIndex}
+                      isLoading={currentIndex ? true : false}
                     />
                   </Grid>
                 </Grid>

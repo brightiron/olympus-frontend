@@ -5,7 +5,7 @@ interface MetricProps {
   className?: string;
   label?: string;
   metric?: string;
-  isLoading?: number | string; //Only allowing string here b/c currentIndex state is defined as a string.
+  isLoading?: boolean;
 }
 
 const Metric = (props: MetricProps) => {
