@@ -57,7 +57,7 @@ function SelectTokenModal(
           </Button>
         </Box>
       </DialogTitle>
-      <Box paddingX="36px" paddingBottom="16px" paddingTop="12px">
+      <Box paddingX="36px" paddingBottom="16px" paddingTop="12px" data-testid="zap-select-token-modal">
         {isTokensLoading ? (
           <Box display="flex" justifyItems="center" flexDirection="column" alignItems="center">
             <CircularProgress />

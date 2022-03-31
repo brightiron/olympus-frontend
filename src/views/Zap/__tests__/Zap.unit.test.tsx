@@ -1,18 +1,10 @@
 import { render } from "../../../testUtils";
 import SelectTokenModal from "../SelectTokenModal";
 import Zap from "../Zap";
-import ZapStakeAction from "../ZapStakeAction";
 
 describe("<Zap/>", () => {
   it("should render component", () => {
     const { container } = render(<Zap />);
-    expect(container).toMatchSnapshot();
-  });
-});
-
-describe("<ZapStakeAction/>", () => {
-  it("should render component", () => {
-    const { container } = render(<ZapStakeAction />);
     expect(container).toMatchSnapshot();
   });
 });
