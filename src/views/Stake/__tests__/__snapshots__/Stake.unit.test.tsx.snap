@@ -4902,7 +4902,7 @@ exports[`<Stake/> should render gOHM conversion when toggling to gOHM 1`] = `
                     <span
                       class="MuiTab-wrapper"
                     >
-                      do_stake
+                      Stake
                     </span>
                   </button>
                   <button
@@ -7624,7 +7624,7 @@ exports[`<Stake/> should render the stake Input Area when connected 1`] = `
                     <span
                       class="MuiTab-wrapper"
                     >
-                      do_stake
+                      Stake
                     </span>
                   </button>
                   <button
