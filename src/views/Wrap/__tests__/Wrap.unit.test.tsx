@@ -1,7 +1,7 @@
 import * as useWeb3Context from "src/hooks/web3Context";
 import { mockWeb3Context } from "src/testHelpers";
 
-import { render } from "../../../testUtils";
+import { act, render } from "../../../testUtils";
 import Wrap from "../Wrap";
 
 jest.mock("web3modal");
@@ -15,34 +15,46 @@ describe("<Wrap/>", () => {
     const { container } = render(<Wrap />);
     expect(container).toMatchSnapshot();
   });
-  it("should Render Migrate Input Area on Avalanche", () => {
+  it("should Render Migrate Input Area on Avalanche", async () => {
     const data = jest.spyOn(useWeb3Context, "useWeb3Context");
     data.mockReturnValue({
       ...mockWeb3Context,
       networkId: 43114,
     });
 
-    const { container } = render(<Wrap />);
+    let container;
+    await act(async () => {
+      ({ container } = render(<Wrap />));
+    });
 
     expect(container).toMatchSnapshot();
   });
-  it("should Render Migrate Input Area on Arbitrum", () => {
+  it("should Render Migrate Input Area on Arbitrum", async () => {
     const data = jest.spyOn(useWeb3Context, "useWeb3Context");
     data.mockReturnValue({
       ...mockWeb3Context,
       networkId: 42161,
     });
-    const { container } = render(<Wrap />);
+
+    let container;
+    await act(async () => {
+      ({ container } = render(<Wrap />));
+    });
+
     expect(container).toMatchSnapshot();
   });
 
-  it("Should Render Wrap Input Area with Wallet Connected", () => {
+  it("Should Render Wrap Input Area with Wallet Connected", async () => {
     const data = jest.spyOn(useWeb3Context, "useWeb3Context");
     data.mockReturnValue({
       ...mockWeb3Context,
       networkId: 1,
     });
-    const { container } = render(<Wrap />);
+
+    let container;
+    await act(async () => {
+      ({ container } = render(<Wrap />));
+    });
     expect(container).toMatchSnapshot();
   });
 });
