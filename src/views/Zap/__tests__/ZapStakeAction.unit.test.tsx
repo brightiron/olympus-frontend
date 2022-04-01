@@ -1,39 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { fireEvent } from "@testing-library/dom";
-import { MockProvider } from "ethereum-waffle";
 import * as useWeb3Context from "src/hooks/web3Context";
 import appReducer from "src/slices/AppSlice";
 import zapReducer from "src/slices/ZapSlice";
-import Web3Modal from "web3modal";
+import { mockWeb3Context } from "src/testHelpers";
 
 import { render, screen } from "../../../testUtils";
 import ZapStakeAction from "../ZapStakeAction";
-
-jest.mock("web3modal"),
-  afterEach(() => {
-    jest.clearAllMocks();
-    jest.restoreAllMocks();
-  });
+afterEach(() => {
+  jest.clearAllMocks();
+  jest.restoreAllMocks();
+});
 
 describe("<ZapStakeAction/> ", () => {
-  const provider = new MockProvider();
-
   it("Submit Button Should be disabled with < 2 tokens selected enabled with two selected", async () => {
     const data = jest.spyOn(useWeb3Context, "useWeb3Context");
-    data.mockReturnValue({
-      connected: true,
-      networkId: 1,
-      provider,
-      connect: jest.fn(),
-      disconnect: jest.fn(),
-      address: "0x0000000000000000000000000000000000000000",
-      hasCachedProvider: jest.fn(() => true),
-      connectionError: null,
-      networkName: "mainnet",
-      providerUri: "http://localhost:8545",
-      providerInitialized: true,
-      web3Modal: new Web3Modal(),
-    });
+    data.mockReturnValue(mockWeb3Context);
     // preload user account with v1 ohm, sohm and wsohm tokens
     // and test migration flow
     const preloadedState = {
