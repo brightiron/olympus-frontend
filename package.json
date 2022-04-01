@@ -8,6 +8,7 @@
     "not op_mini all"
   ],
   "jest": {
+    "testTimeout": 20000,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!<rootDir>/node_modules/",
