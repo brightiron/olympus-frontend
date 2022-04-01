@@ -10,7 +10,7 @@ import { render, screen } from "../../../testUtils";
 import ZapStakeAction from "../ZapStakeAction";
 
 jest.mock("web3modal"),
-  beforeEach(() => {
+  afterEach(() => {
     jest.clearAllMocks();
     jest.restoreAllMocks();
   });
