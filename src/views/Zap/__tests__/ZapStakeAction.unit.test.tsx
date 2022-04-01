@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { fireEvent } from "@testing-library/dom";
+import { act } from "react-dom/test-utils";
 import * as useWeb3Context from "src/hooks/web3Context";
 import appReducer from "src/slices/AppSlice";
 import zapReducer from "src/slices/ZapSlice";
@@ -64,12 +65,15 @@ describe("<ZapStakeAction/> ", () => {
 
     const store = configureStore({
       reducer,
-      devTools: true,
+      middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
       preloadedState,
     }) as any; //eslint-disable-line
-    const stakeAction = <ZapStakeAction />;
 
-    const { container } = render(stakeAction, store);
+    let container;
+    await act(async () => {
+      ({ container } = render(<ZapStakeAction />, store));
+    });
+
     fireEvent.click(await screen.findByTestId("zap-input"));
     fireEvent.click(await screen.getAllByText("ETH")[0]);
     fireEvent.input(await screen.findByTestId("zap-amount-input"), { target: { value: "1" } });
