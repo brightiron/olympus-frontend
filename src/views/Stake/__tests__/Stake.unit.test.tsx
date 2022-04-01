@@ -6,7 +6,7 @@ import { ReactQueryProvider } from "src/lib/react-query";
 import { render, screen } from "../../../testUtils";
 import Stake from "../Stake";
 
-beforeEach(() => {
+afterEach(() => {
   jest.restoreAllMocks();
 });
 describe("<Stake/>", () => {

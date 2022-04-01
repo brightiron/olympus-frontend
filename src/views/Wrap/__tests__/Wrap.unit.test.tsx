@@ -4,6 +4,10 @@ import * as useWeb3Context from "src/hooks/web3Context";
 import { render } from "../../../testUtils";
 import Wrap from "../Wrap";
 
+afterEach(() => {
+  jest.clearAllMocks();
+  jest.restoreAllMocks();
+});
 describe("<Wrap/>", () => {
   const provider = new MockProvider();
   it("Should show Connect Button when not Connected", () => {
