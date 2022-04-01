@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import ProjectCard, { ProjectDetailsMode } from "src/components/GiveProject/ProjectCard";
 import * as useWeb3Context from "src/hooks/web3Context";
 import accountReducer from "src/slices/AccountSlice";
@@ -27,37 +28,58 @@ const project = {
   website: "https://www.impactmarket.com/",
 };
 
-beforeEach(() => {
+afterEach(() => {
   jest.restoreAllMocks();
 });
 
 describe("Give View Disconnected", () => {
   it("should render Causes Dashboard as Default", async () => {
-    const { container } = await render(<Give />);
+    let container;
+    await act(async () => {
+      ({ container } = await render(<Give />));
+    });
     expect(container).toMatchSnapshot();
   });
+
   it("should render Causes Dashboard", async () => {
-    const { container } = await render(<CausesDashboard />);
+    let container;
+    await act(async () => {
+      ({ container } = await render(<CausesDashboard />));
+    });
     expect(container).toMatchSnapshot();
   });
+
   it("should render Grants Dashboard", async () => {
-    const { container } = await render(<GrantsDashboard />);
+    let container;
+    await act(async () => {
+      ({ container } = await render(<GrantsDashboard />));
+    });
     expect(container).toMatchSnapshot();
   });
+
   it("should render Redeem Yield Screen", async () => {
-    const { container } = await render(<RedeemYield />);
+    let container;
+    await act(async () => {
+      ({ container } = await render(<RedeemYield />));
+    });
     expect(container).toMatchSnapshot();
   });
+
   it("should render Yield Recipients Screen with Donate to a cause button", async () => {
-    const { container } = await render(<YieldRecipients changeView={() => null} />);
+    let container;
+    await act(async () => {
+      ({ container } = await render(<YieldRecipients changeView={() => null} />));
+    });
+
     expect(await screen.getByText("Donate to a cause")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
 
   it("should render project card with connect wallet button", async () => {
-    const { container } = await render(
-      <ProjectCard key={project.slug} project={project} mode={ProjectDetailsMode.Page} />,
-    );
+    let container;
+    await act(async () => {
+      ({ container } = render(<ProjectCard key={project.slug} project={project} mode={ProjectDetailsMode.Page} />));
+    });
     expect(await screen.getByText("Connect Wallet")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
@@ -94,10 +116,14 @@ describe("Give View Connected", () => {
   it("should render project card with Donate Yield Button", async () => {
     const data = jest.spyOn(useWeb3Context, "useWeb3Context");
     data.mockReturnValue(mockWeb3Context);
-    const { container } = render(
-      <ProjectCard key={project.slug} project={project} mode={ProjectDetailsMode.Page} />,
-      store,
-    );
+
+    let container;
+    await act(async () => {
+      ({ container } = render(
+        <ProjectCard key={project.slug} project={project} mode={ProjectDetailsMode.Page} />,
+        store,
+      ));
+    });
     expect(await screen.getByText("Donate Yield")).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });

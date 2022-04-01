@@ -83,5 +83,5 @@ describe("<ZapStakeAction/> ", () => {
     fireEvent.input(await screen.findByTestId("zap-amount-input"), { target: { value: "1" } });
     expect(await screen.findByText("Zap-Stake"));
     expect(container).toMatchSnapshot();
-  }, 10000);
+  }, 20000);
 });
