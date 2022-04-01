@@ -23,6 +23,8 @@ jobs:
           yarn test:unit
       - name: Jest coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2.0.5
+        with:
+          test-script: yarn test:unit
       - name: Prepare coverage badges
         run: |
           echo "COVERAGE_BRANCHES_PCT=$(echo $(jq .total.branches.pct coverage/coverage-summary.json))" >> $GITHUB_ENV
