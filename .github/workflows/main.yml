@@ -19,9 +19,6 @@ jobs:
         env:
           CI: false
       - name: Run unit tests
-        run: |
-          yarn test:unit
-      - name: Jest coverage report
         uses: ArtiomTr/jest-coverage-report-action@v2.0.5
         with:
           test-script: yarn test:unit
