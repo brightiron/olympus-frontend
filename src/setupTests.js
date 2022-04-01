@@ -9,6 +9,7 @@ expect.extend(matchers);
 
 global.CSS = { supports: jest.fn() };
 jest.setTimeout(20000);
+jest.useFakeTimers();
 beforeAll(() => {
   i18n.loadLocaleData("en", { plurals: en });
   i18n.load("en", messages);
